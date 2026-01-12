@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenShapes - Tecnologie Digitali per la Sostenibilità</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette Istituzionale PNRR */
+            --pnrr-blue: #004990; /* Blu Ministero/Europa */
+            --pnrr-light-blue: #0066cc;
+            --pnrr-dark-blue: #003366;
+            --accent-green: #00cc66; /* GreenShapes accent */
+            --text-white: #ffffff;
+            --text-gray: #e0e0e0;
+            --bg-gradient: linear-gradient(135deg, #003366 0%, #004990 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: url('images/hero_bg.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 51, 102, 0.85); /* Overlay blu istituzionale */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #00cc66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* Work Packages Grid */
+        .wp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+        }
+
+        .wp-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden; /* Per l'immagine */
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wp-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-green);
+        }
+
+        .wp-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .wp-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wp-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .wp-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 204, 102, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .wp-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .wp-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .wp-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: #003366;
+        }
+
+        .btn-primary:hover {
+            background: #00ff80;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-white);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            background: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-logos {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            color: #333;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .wp-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container hero-content">
+            <div class="badge">PNRR TECH4YOU - Spoke 4</div>
+            <h1>GreenShapes</h1>
+            <p class="subtitle">
+                Tecnologie digitali avanzate per la sostenibilità ambientale, la valorizzazione del patrimonio e il coinvolgimento dei cittadini.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="wp-grid">
+            <!-- WP1 -->
+            <article class="wp-card">
+                <img src="images/wp1_forest.jpg" alt="Foresta WP1" class="wp-image">
+                <div class="wp-content">
+                    <div class="wp-header">
+                        <div class="wp-icon">WP1</div>
+                        <h3 class="wp-title">Dati Satellitari & LiDAR</h3>
+                    </div>
+                    <p class="wp-desc">
+                        Mappatura foreste vetuste del Parco Nazionale del Pollino con dati Sentinel-1/2 e LiDAR ad alta risoluzione.
+                    </p>
+                    <div class="wp-links">
+                        <a href="https://www.geocartspa.it/tech4you/" target="_blank" class="btn btn-primary">Viewer Mappa Online</a>
+                        <a href="https://drive.google.com/drive/folders/10dUpxmarY05DNKOhAMRwGJRqFXcZYNzJ" target="_blank" class="btn btn-outline">Database Geospaziale</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WP2 -->
+            <article class="wp-card">
+                <img src="images/wp2_dashboard.jpg" alt="Dashboard WP2" class="wp-image">
+                <div class="wp-content">
+                    <div class="wp-header">
+                        <div class="wp-icon">WP2</div>
+                        <h3 class="wp-title">AI Dashboard Generator</h3>
+                    </div>
+                    <p class="wp-desc">
+                        Piattaforma web per analisi dati agricoli con intelligenza artificiale conversazionale (GPT-4o).
+                    </p>
+                    <div class="wp-links">
+                        <a href="https://mx4vd8cxnm.eu-central-1.awsapprunner.com" target="_blank" class="btn btn-primary">Prova Piattaforma Live</a>
+                        <a href="https://drive.google.com/drive/folders/178R0wjvZjhPAmqF6ABVg5hAU8QVn5ghG" target="_blank" class="btn btn-outline">Documentazione Tecnica</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WP3 -->
+            <article class="wp-card">
+                <img src="images/wp3_food.jpg" alt="Atlante Cibo WP3" class="wp-image">
+                <div class="wp-content">
+                    <div class="wp-header">
+                        <div class="wp-icon">WP3</div>
+                        <h3 class="wp-title">Atlante del Cibo</h3>
+                    </div>
+                    <p class="wp-desc">
+                        Sistema di raccomandazione intelligente e APP PWA per la valorizzazione dei prodotti gastronomici lucani.
+                    </p>
+                    <div class="wp-links">
+                        <a href="https://atlantedelcibomatera.publisys.it" target="_blank" class="btn btn-primary">Visita Atlante Online</a>
+                        <a href="https://ntyp4w4rmu.eu-central-1.awsapprunner.com" target="_blank" class="btn btn-outline">Sistema Raccomandazione</a>
+                        <a href="https://www.google.it" target="_blank" class="btn btn-outline">Atlante Cambiamento Climatico</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WP4 -->
+            <article class="wp-card">
+                <img src="images/wp4_game.jpg" alt="Game WP4" class="wp-image">
+                <div class="wp-content">
+                    <div class="wp-header">
+                        <div class="wp-icon">WP4</div>
+                        <h3 class="wp-title">Gamification App</h3>
+                    </div>
+                    <p class="wp-desc">
+                        "Trails of Signs": Videogioco mobile educativo sul cambiamento climatico ambientato nel Parco del Pollino.
+                    </p>
+                    <div class="wp-links">
+                        <a href="https://drive.google.com/file/d/1Qgy571k9qGRMkWHNJw57qTkDID-6dk_N/view" target="_blank" class="btn btn-primary">Scarica APK Android</a>
+                        <a href="https://github.com/argomauro/GreenShapes/discussions" target="_blank" class="btn btn-outline">Forum Community</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <img src="images/BARRA_BL.png" alt="Loghi Istituzionali PNRR" class="footer-logos">
+            <p class="footer-text">
+                Progetto finanziato dall'Unione Europea - NextGenerationEU<br>
+                PNRR Missione 4 Componente 2, Investimento 1.5 - Programma TECH4YOU - CUP C43C22000400006
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
